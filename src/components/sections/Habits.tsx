@@ -48,7 +48,6 @@ export function Habits() {
     <div>
       <SectionHeader
         accent="habits"
-        icon="💪"
         title="Hábitos de salud y gym"
         count={doneTodayCount}
         countLabel="hechos hoy"
@@ -67,7 +66,7 @@ export function Habits() {
       </Card>
 
       {habits.length === 0 ? (
-        <EmptyState icon="🌱" text="Sumá tu primer hábito para empezar a trackearlo." />
+        <EmptyState text="Agrega tu primer hábito para empezar a registrarlo." />
       ) : (
         <ul className="flex flex-col gap-3">
           {habits.map((habit) => {
@@ -96,7 +95,7 @@ export function Habits() {
                         : 'border border-ink/15 bg-paper text-ink-soft hover:bg-paper-dark'
                     }`}
                   >
-                    {doneToday ? '✓ Hecho hoy' : 'Marcar hoy'}
+                    {doneToday ? 'Hecho hoy' : 'Marcar hoy'}
                   </button>
                   <DeleteButton onClick={() => remove(habit.id)} label="Borrar hábito" />
                 </Card>

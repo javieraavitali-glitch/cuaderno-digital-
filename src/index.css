@@ -21,6 +21,19 @@
   --color-habits-soft: #f0d9de;
   --color-notes: #3e6259;
   --color-notes-soft: #d9e5df;
+
+  --color-clay: #8c5a3c;
+  --color-clay-soft: #efddc9;
+  --color-moss: #6b7a3f;
+  --color-moss-soft: #e2e6cb;
+  --color-berry: #7a3f52;
+  --color-berry-soft: #eedce1;
+  --color-ochre: #b08a3e;
+  --color-ochre-soft: #f3e6c7;
+  --color-slate: #55606b;
+  --color-slate-soft: #dde1e4;
+  --color-teal: #3f6b6b;
+  --color-teal-soft: #d8e6e6;
 }
 
 html,

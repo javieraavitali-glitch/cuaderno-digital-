@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { ACCENT, type SectionId } from '../theme';
+import { ACCENT, type SectionColor } from '../theme';
 import { TrashIcon, PlusIcon } from './icons';
 
 export function Card({
@@ -18,15 +18,37 @@ export function Card({
   );
 }
 
+export function LetterBadge({
+  label,
+  accent,
+  size = 'md',
+  active = true,
+}: {
+  label: string;
+  accent: SectionColor;
+  size?: 'sm' | 'md';
+  active?: boolean;
+}) {
+  const c = ACCENT[accent];
+  const dims = size === 'sm' ? 'h-7 w-7 text-xs' : 'h-10 w-10 text-base';
+  return (
+    <span
+      className={`flex shrink-0 items-center justify-center rounded-xl font-serif font-semibold ${dims} ${
+        active ? `${c.bgSoft} ${c.text}` : 'bg-ink/5 text-ink-faint'
+      }`}
+    >
+      {label.trim().charAt(0).toUpperCase() || '?'}
+    </span>
+  );
+}
+
 export function SectionHeader({
   accent,
-  icon,
   title,
   count,
   countLabel,
 }: {
-  accent: SectionId;
-  icon: string;
+  accent: SectionColor;
   title: string;
   count: number;
   countLabel: string;
@@ -35,11 +57,7 @@ export function SectionHeader({
   return (
     <div className="mb-5 flex items-center justify-between gap-3">
       <div className="flex items-center gap-3">
-        <span
-          className={`flex h-10 w-10 items-center justify-center rounded-xl text-xl ${c.bgSoft}`}
-        >
-          {icon}
-        </span>
+        <LetterBadge label={title} accent={accent} />
         <h1 className="font-serif text-2xl font-semibold text-ink sm:text-3xl">
           {title}
         </h1>
@@ -58,7 +76,7 @@ export function AddButton({
   children = 'Agregar',
   type = 'submit',
 }: {
-  accent: SectionId;
+  accent: SectionColor;
   children?: ReactNode;
   type?: 'submit' | 'button';
 }) {
@@ -88,10 +106,9 @@ export function DeleteButton({ onClick, label }: { onClick: () => void; label: s
   );
 }
 
-export function EmptyState({ icon, text }: { icon: string; text: string }) {
+export function EmptyState({ text }: { text: string }) {
   return (
     <div className="rounded-2xl border-2 border-dashed border-ink/10 px-6 py-10 text-center">
-      <div className="mb-2 text-3xl">{icon}</div>
       <p className="text-sm text-ink-soft">{text}</p>
     </div>
   );

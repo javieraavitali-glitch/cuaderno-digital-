@@ -41,7 +41,6 @@ export function Notes() {
     <div>
       <SectionHeader
         accent="notes"
-        icon="📝"
         title="Notas y estudio"
         count={notes.length}
         countLabel="notas"
@@ -51,7 +50,7 @@ export function Notes() {
         <form onSubmit={handleAdd} className="flex flex-col gap-2.5">
           <textarea
             className={`${inputClasses} min-h-20 resize-y`}
-            placeholder="Escribí tu nota..."
+            placeholder="Escribe tu nota..."
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
@@ -78,9 +77,9 @@ export function Notes() {
       </div>
 
       {notes.length === 0 ? (
-        <EmptyState icon="📔" text="Todavía no guardaste ninguna nota de estudio." />
+        <EmptyState text="Todavía no has guardado ninguna nota de estudio." />
       ) : filtered.length === 0 ? (
-        <EmptyState icon="🔍" text="No hay notas que coincidan con la búsqueda." />
+        <EmptyState text="No hay notas que coincidan con la búsqueda." />
       ) : (
         <ul className="flex flex-col gap-3">
           {filtered.map((note) => (

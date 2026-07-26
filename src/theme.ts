@@ -1,4 +1,17 @@
-export type SectionId = 'books' | 'music' | 'ideas' | 'habits' | 'notes';
+export type FixedSectionId = 'habits' | 'notes';
+
+export type SectionColor =
+  | 'books'
+  | 'music'
+  | 'ideas'
+  | 'habits'
+  | 'notes'
+  | 'clay'
+  | 'moss'
+  | 'berry'
+  | 'ochre'
+  | 'slate'
+  | 'teal';
 
 interface AccentClasses {
   text: string;
@@ -11,7 +24,7 @@ interface AccentClasses {
 
 // Nota: las clases quedan como strings literales completos (no se arman con
 // template literals) para que el scanner de Tailwind las detecte en build.
-export const ACCENT: Record<SectionId, AccentClasses> = {
+export const ACCENT: Record<SectionColor, AccentClasses> = {
   books: {
     text: 'text-books',
     bg: 'bg-books',
@@ -52,12 +65,75 @@ export const ACCENT: Record<SectionId, AccentClasses> = {
     ring: 'ring-notes',
     hoverBg: 'hover:bg-notes-soft',
   },
+  clay: {
+    text: 'text-clay',
+    bg: 'bg-clay',
+    bgSoft: 'bg-clay-soft',
+    border: 'border-clay',
+    ring: 'ring-clay',
+    hoverBg: 'hover:bg-clay-soft',
+  },
+  moss: {
+    text: 'text-moss',
+    bg: 'bg-moss',
+    bgSoft: 'bg-moss-soft',
+    border: 'border-moss',
+    ring: 'ring-moss',
+    hoverBg: 'hover:bg-moss-soft',
+  },
+  berry: {
+    text: 'text-berry',
+    bg: 'bg-berry',
+    bgSoft: 'bg-berry-soft',
+    border: 'border-berry',
+    ring: 'ring-berry',
+    hoverBg: 'hover:bg-berry-soft',
+  },
+  ochre: {
+    text: 'text-ochre',
+    bg: 'bg-ochre',
+    bgSoft: 'bg-ochre-soft',
+    border: 'border-ochre',
+    ring: 'ring-ochre',
+    hoverBg: 'hover:bg-ochre-soft',
+  },
+  slate: {
+    text: 'text-slate',
+    bg: 'bg-slate',
+    bgSoft: 'bg-slate-soft',
+    border: 'border-slate',
+    ring: 'ring-slate',
+    hoverBg: 'hover:bg-slate-soft',
+  },
+  teal: {
+    text: 'text-teal',
+    bg: 'bg-teal',
+    bgSoft: 'bg-teal-soft',
+    border: 'border-teal',
+    ring: 'ring-teal',
+    hoverBg: 'hover:bg-teal-soft',
+  },
 };
 
-export const SECTIONS: { id: SectionId; label: string; icon: string }[] = [
-  { id: 'books', label: 'Libros', icon: '📚' },
-  { id: 'music', label: 'Música', icon: '🎵' },
-  { id: 'ideas', label: 'Ideas', icon: '💡' },
-  { id: 'habits', label: 'Hábitos', icon: '💪' },
-  { id: 'notes', label: 'Notas', icon: '📝' },
+// Colores que se van asignando por turno a cada sección nueva que el
+// usuario crea (en orden, sin repetir hasta dar la vuelta completa).
+export const CUSTOM_COLOR_ORDER: SectionColor[] = [
+  'books',
+  'music',
+  'ideas',
+  'clay',
+  'moss',
+  'berry',
+  'ochre',
+  'slate',
+  'teal',
+];
+
+export function colorForIndex(index: number): SectionColor {
+  return CUSTOM_COLOR_ORDER[index % CUSTOM_COLOR_ORDER.length];
+}
+
+export const FIXED_SECTIONS: { id: FixedSectionId; label: string; color: SectionColor }[] = [
+  { id: 'habits', label: 'Hábitos', color: 'habits' },
+  { id: 'notes', label: 'Notas', color: 'notes' },
 ];
